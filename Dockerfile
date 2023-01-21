@@ -1,3 +1,3 @@
 FROM java:jre-alpine
-ADD http://www.beanshell.org/bsh-2.0b4.jar /bsh-2.0b4.jar
-ENTRYPOINT java -cp /bsh-2.0b4.jar bsh.Interpreter
+ADD https://github.com/beanshell/beanshell/releases/download/2.1.1/bsh-2.1.1.jar /bsh.jar
+ENTRYPOINT java -cp /bsh.jar bsh.Interpreter
