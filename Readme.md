@@ -1,5 +1,7 @@
 # Docker Beanshell
 
+[![CI](https://github.com/johnhwhite/beanshell/actions/workflows/ci.yml/badge.svg)](https://github.com/johnhwhite/beanshell/actions/workflows/ci.yml)
+
 Quick and simple [beanshell interpreter](http://www.beanshell.org).
 
 ```

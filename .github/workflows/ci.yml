@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+    branches:
+      - "main"
+
+env:
+  IMAGE_NAME: johnhwhite/beanshell
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build and test
+        run: |
+          set -x
+          docker build -t $IMAGE_NAME .
+          echo 'print( "hello world" );' | docker run --rm -i $IMAGE_NAME | fgrep 'bsh % hello world'
+      - name: Push to Docker Hub
+        if: github.ref == 'refs/heads/main'
+        run: |
+          set -x
+          echo ${{ secrets.DOCKER_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+          docker push $IMAGE_NAME
